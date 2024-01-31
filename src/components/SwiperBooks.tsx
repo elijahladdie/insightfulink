@@ -53,7 +53,7 @@ const SwiperBooks = () => {
                 You'll laugh and you'll cry with Anna Renee Riley. And, you just
                 might end up becoming one of her best friends.
               </p>
-              <Link to="/products" className="!#  font-extralight uppercase   text-base whitespace-nowrap flex flex-row border  border-custom-purple rounded-lg items-center w-fit px-4 py-2 gap-2  t ">
+              <Link to="/books" className="!#  font-extralight uppercase   text-base whitespace-nowrap flex flex-row border  border-custom-purple rounded-lg items-center w-fit px-4 py-2 gap-2  t ">
                 Read more
                 <FaLongArrowAltRight />
               </Link>
@@ -78,7 +78,7 @@ const SwiperBooks = () => {
                 You'll laugh and you'll cry with Anna Renee Riley. And, you just
                 might end up becoming one of her best friends.
               </p>
-              <Link to="/products" className="!#  font-extralight uppercase  text-base whitespace-nowrap flex flex-row border  border-custom-purple rounded-lg items-center w-fit px-4 py-2 gap-2  t ">
+              <Link to="/books" className="!#  font-extralight uppercase  text-base whitespace-nowrap flex flex-row border  border-custom-purple rounded-lg items-center w-fit px-4 py-2 gap-2  t ">
                 Read more
                 <FaLongArrowAltRight />
               </Link>
@@ -103,7 +103,7 @@ const SwiperBooks = () => {
                 You'll laugh and you'll cry with Anna Renee Riley. And, you just
                 might end up becoming one of her best friends.
               </p>
-              <Link to="/products" className="!#  font-extralight uppercase  text-base whitespace-nowrap flex flex-row border  border-custom-purple rounded-lg items-center w-fit px-4 py-2 gap-2  t ">
+              <Link to="/books" className="!#  font-extralight uppercase  text-base whitespace-nowrap flex flex-row border  border-custom-purple rounded-lg items-center w-fit px-4 py-2 gap-2  t ">
                 Read more
                 <FaLongArrowAltRight />
               </Link>
@@ -128,7 +128,7 @@ const SwiperBooks = () => {
                 You'll laugh and you'll cry with Anna Renee Riley. And, you just
                 might end up becoming one of her best friends.
               </p>
-              <Link to="/products" className="!#  font-extralight uppercase  text-base whitespace-nowrap flex flex-row border  border-custom-purple rounded-lg items-center w-fit px-4 py-2 gap-2  t ">
+              <Link to="/books" className="!#  font-extralight uppercase  text-base whitespace-nowrap flex flex-row border  border-custom-purple rounded-lg items-center w-fit px-4 py-2 gap-2  t ">
                 Read more
                 <FaLongArrowAltRight />
               </Link>
@@ -153,7 +153,7 @@ const SwiperBooks = () => {
                 You'll laugh and you'll cry with Anna Renee Riley. And, you just
                 might end up becoming one of her best friends.
               </p>
-              <Link to="/products" className="!#  font-extralight uppercase  text-base whitespace-nowrap flex flex-row border  border-custom-purple rounded-lg items-center w-fit px-4 py-2 gap-2  t ">
+              <Link to="/books" className="!#  font-extralight uppercase  text-base whitespace-nowrap flex flex-row border  border-custom-purple rounded-lg items-center w-fit px-4 py-2 gap-2  t ">
                 Read more
                 <FaLongArrowAltRight />
               </Link>
@@ -178,7 +178,7 @@ const SwiperBooks = () => {
                 You'll laugh and you'll cry with Anna Renee Riley. And, you just
                 might end up becoming one of her best friends.
               </p>
-              <Link to="/products" className="!#  font-extralight uppercase  text-base whitespace-nowrap flex flex-row border  border-custom-purple rounded-lg items-center w-fit px-4 py-2 gap-2  t ">
+              <Link to="/books" className="!#  font-extralight uppercase  text-base whitespace-nowrap flex flex-row border  border-custom-purple rounded-lg items-center w-fit px-4 py-2 gap-2  t ">
                 Read more
                 <FaLongArrowAltRight />
               </Link>

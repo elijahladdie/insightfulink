@@ -10,7 +10,7 @@ import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
-    <div className="flex w-full relative gap-20 items-center  bg-custom-tomato flex-col py-5 overflow-hidden">
+    <div className="flex w-full relative gap-20 items-center  bg-custom-tomato flex-col py-5 overflow-hidden ">
       <svg
         className="absolute
                          -top-0 -left-0"

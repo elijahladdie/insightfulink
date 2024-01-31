@@ -35,7 +35,7 @@ const Categories = () => {
         </div>
       </div>
       <div className="flex item-center w-full justify-center">
-        <Link to="/products" className="uppercase font-extralight text-base whitespace-nowrap flex flex-row border  border-custom-purple rounded-lg items-center w-fit px-4 py-2 gap-2 ">
+        <Link to="/books" className="uppercase font-extralight text-base whitespace-nowrap flex flex-row border  border-custom-purple rounded-lg items-center w-fit px-4 py-2 gap-2 ">
           view more
           <FaLongArrowAltRight />
         </Link>

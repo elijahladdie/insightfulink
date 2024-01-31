@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 import slide1Img from "../assests/book.png";
@@ -10,7 +10,6 @@ import "swiper/css";
 import "swiper/css/pagination";
 import { FaLongArrowAltRight } from "react-icons/fa";
 //
-// import './styles.css';
 
 // import required modules
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
@@ -18,10 +17,7 @@ import { Link } from "react-router-dom";
 const Featured = () => {
   const img = new Image();
   img.src = slide1Img;
-  img.onload = () => {
-    console.log(img.width, "****", img.height);
-  };
-  console.log(img);
+
   return (
     <Swiper
       spaceBetween={30}
@@ -63,7 +59,7 @@ const Featured = () => {
               <span className="font-bold text-custom-tomato py-3">$ 85.00</span>
             </div>
 
-            <Link to="products" className="!#  cursor-pointer font-extralight uppercase   text-base whitespace-nowrap flex flex-row border  border-custom-purple rounded-lg items-center w-fit px-4 py-2 gap-2  t ">
+            <Link to="books" className="!#  cursor-pointer font-extralight uppercase   text-base whitespace-nowrap flex flex-row border  border-custom-purple rounded-lg items-center w-fit px-4 py-2 gap-2  t ">
               view more
               <FaLongArrowAltRight />
             </Link>
@@ -97,7 +93,7 @@ const Featured = () => {
               <span className="font-bold text-custom-tomato py-3">$ 85.00</span>
             </div>
 
-            <Link to="products" className="!#  font-extralight uppercase   text-base whitespace-nowrap flex flex-row border  border-custom-purple rounded-lg items-center w-fit px-4 py-2 gap-2  t ">
+            <Link to="books" className="!#  font-extralight uppercase   text-base whitespace-nowrap flex flex-row border  border-custom-purple rounded-lg items-center w-fit px-4 py-2 gap-2  t ">
               view more
               <FaLongArrowAltRight />
             </Link>
@@ -131,7 +127,7 @@ const Featured = () => {
               <span className="font-bold text-custom-tomato py-3">$ 85.00</span>
             </div>
 
-            <Link to="products" className="!#  font-extralight uppercase   text-base whitespace-nowrap flex flex-row border  border-custom-purple rounded-lg items-center w-fit px-4 py-2 gap-2  t ">
+            <Link to="books" className="!#  font-extralight uppercase   text-base whitespace-nowrap flex flex-row border  border-custom-purple rounded-lg items-center w-fit px-4 py-2 gap-2  t ">
               view more
               <FaLongArrowAltRight />
             </Link>

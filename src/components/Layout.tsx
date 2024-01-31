@@ -5,11 +5,11 @@ interface LayoutPros {
     children: ReactNode;
 }
 
-const Layout:React.FC<LayoutPros> = ({children}) => {
+const Layout: React.FC<LayoutPros> = ({ children }) => {
     return <div className="relative">
-        <Navbar/>
+        <Navbar />
         {children}
-        </div>
+    </div>
 }
 
 export default Layout

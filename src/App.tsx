@@ -13,7 +13,7 @@ import NewBook from "./components/NewBook";
 import DetailPage from "./components/DetailPage";
 import Login from "./components/Login";
 import UserDetail from "./components/Userdetails";
-
+import 'react-toastify/dist/ReactToastify.css';
 const App = () => {
   return (
     <BrowserRouter>
@@ -35,12 +35,20 @@ const App = () => {
 
 const Auth = () => {
   const isLoggedin = true; // Get login state from context or local storage or wherever
-  if (!isLoggedin) {
-    // If user is not logged in, render login page or redirect to login
-    return <Navigate to={"/login"} />;
-  } else {
-    const isAdmin = true; // Determine if the user is an admin or not
-    if (isAdmin) {
+  const access_info = localStorage.getItem("access_info");
+
+  if (access_info) {
+    // Parse JSON string into an object
+    const accessInfoObj = JSON.parse(access_info);
+
+    // Destructure properties from the parsed object
+    const { username, user_fullnames, access_level } = accessInfoObj.data;
+
+    console.log(username, user_fullnames, access_level);
+
+    // Now you can use these variables as needed
+
+    if (access_level === 1) {
       return (
         <Routes>
           <Route index element={<AdminDashboard />} />
@@ -59,6 +67,10 @@ const Auth = () => {
         </Routes>
       );
     }
+
+  } else {
+    console.log("No access info found in localStorage.");
+    return <Navigate to={"/login"} />;
   }
 };
 

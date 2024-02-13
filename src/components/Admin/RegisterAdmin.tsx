@@ -105,6 +105,7 @@ const RegisterAdmin: React.FC = () => {
        
             <button
               type="submit"
+              
               className="text-custom-tomato shadow-lg  rounded-md py-2 w-full"
               >
               Register

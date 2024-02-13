@@ -1,22 +1,21 @@
+import axios from "axios";
 import React, { useState, ChangeEvent, FormEvent } from "react";
 import { Link } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
 interface UserFormData {
     username: string;
     password: string;
     user_fullnames: string;
     access_level: number;
-    balance: number;
     subscription_status: string;
 }
-
 const Login: React.FC = () => {
- 
+
     const [formData, setFormData] = useState<UserFormData>({
         username: "",
         password: "",
         user_fullnames: "",
         access_level: 0,
-        balance: 0,
         subscription_status: "inactive",
     });
     const [isLogin, setIsLogin] = useState(true);
@@ -31,21 +30,55 @@ const Login: React.FC = () => {
         });
     };
 
+    //**register */
+    const handleSubmit = async () => {
+        const { data } = await axios.post(`http://localhost:5000/user/register`, formData)
+        toast.success(data.message)
+    };
+    const handleLogin = async () => {
+        const { username, password } = formData;
 
-    const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-        console.log(formData);
-        // Here you can submit the form data
+        // Client-side validation
+        if (username.trim() === "" || password.trim() === "") {
+            return toast.error("Please provide both username and password.");
+        }
+
+        try {
+            const response = await axios.post(`http://localhost:5000/user/login`, {
+                username,
+                password
+            });
+
+            const { data } = response;
+
+            // Log received data
+            console.log(data, "Received data");
+
+            // Display success message
+            toast.success(data.message);
+
+            // Store data in localStorage
+            localStorage.setItem("access_info", JSON.stringify(data));
+        } catch (error) {
+            // Handle errors
+            console.error("Error occurred:", error);
+
+            toast.error("Invalid username or password. Please try again.");
+
+        }
+
+
     };
 
     return (
         <div className="h-[90vh] flex   items-center justify-center flex-col">
             <h1 className="text-custom-tomato text-[19px] p-2 capitalize py-3">
-                Welcome {isLogin ? "back Login": "sign up"}
+                <ToastContainer position="top-center" />
+                Welcome {isLogin ? "back Login" : "sign up"}
             </h1>
-            <form
+            <div
                 className=" rounded-md text-sm space-y-4 p-3 min-w-96"
-                onSubmit={handleSubmit}
+
             >
                 <div className="w-full">
                     <label>Username</label>
@@ -95,14 +128,14 @@ const Login: React.FC = () => {
                     isLogin ? (
                         // 
                         <>
-                            <Link
+                            <button
                                 type="submit"
-                                to={"/dashboard"}
+                                onClick={handleLogin}
                                 className="bg-custom-tomato shadow text-white text-center shadow-lg rounded-md py-2 w-full"
 
                             >
                                 Login
-                            </Link>
+                            </button>
                             <p>or</p>
                             <button
                                 type="submit"
@@ -114,13 +147,13 @@ const Login: React.FC = () => {
                         </>
                     ) : (
                         <>
-                            <Link
-                                to={"/dashboard"}
+                            <button
+                                onClick={handleSubmit}
                                 type="submit"
                                 className="bg-custom-tomato shadow text-white text-center shadow-lg rounded-md py-2 w-full"
                             >
                                 Register
-                            </Link>
+                            </button>
                             <p>or</p>
                             <button
                                 type="submit"
@@ -133,7 +166,7 @@ const Login: React.FC = () => {
                     )
                 }
                 </div>
-            </form>
+            </div>
         </div>
 
     );

@@ -31,8 +31,9 @@ const NewUser: React.FC = () => {
   };
 
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const handleSubmit = () => {
+    // e.preventDefault();
+    // console.log()
     console.log(formData);
     // Here you can submit the form data
   };
@@ -91,14 +92,14 @@ const NewUser: React.FC = () => {
         isLogin ? (
           // 
           <>
-            <Link
+            <button
               type="submit"
-              to={"/dashboard"}
+              onClick={()=>handleSubmit()}
               className="bg-custom-tomato shadow text-white text-center shadow-lg rounded-md py-2 w-full"
 
             >
               Login
-            </Link>
+            </button>
             <p>or</p>
             <button
               type="submit"
@@ -110,13 +111,13 @@ const NewUser: React.FC = () => {
           </>
         ) : (
           <>
-            <Link
-              to={"/dashboard"}
+            <button
+              onClick={handleSubmit}
               type="submit"
               className="bg-custom-tomato shadow text-white text-center shadow-lg rounded-md py-2 w-full"
             >
               Register
-            </Link>
+            </button>
             <p>or</p>
             <button
               type="submit"

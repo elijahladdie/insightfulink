@@ -11,10 +11,13 @@ const Navbar = () => {
   const [isLogin, setIsLogin] = useState(true);
   const [showForm, setShowForm] = useState(false);
 
-  const toggleForm = () => {
-    setIsLogin((prevIsLogin) => !prevIsLogin);
-  };
+  const access_info = localStorage.getItem("access_info");
 
+
+  const handelogout = () => {
+     localStorage.removeItem("access_info");
+     window.location.href = "/"
+  }
   return (
     <div className="w-screen  bg-white overflow-hidden">
       <div className=" hidden md:flex lg:flex justify-between p-3 gap-8  w-full">
@@ -79,11 +82,11 @@ const Navbar = () => {
           <ul className="flex lg:gap-2 gap-1">
             <li
               onClick={() => setActiveNav(6)}
+
               className={`mr-4 border-custom-gray px-3
              hover:text-custom-tomato ${activeNav === 6 ? "text-custom-tomato" : "text-black"
                 }`}
-            >
-              <button onClick={() => setShowForm(!showForm)}>Login </button>
+            >{!access_info ? <Link to="/login">Login </Link> : <button onClick={handelogout} className="bg-custom-tomato rounded-lg text-white px-4 py-2">Logout</button>}
             </li>
           </ul>
         </div>
@@ -117,7 +120,7 @@ const Navbar = () => {
           <div className="flex-col flex lg:gap-20 gap-3 items-center lg:text-lg text-sm">
             <ul className=" flex gap-4 flex-col items-center">
               <li
-                onClick={() => setActiveNav(1)}
+                onClick={() => { setIsNav(false); return setActiveNav(1) }}
                 className={`text-lg border-custom-gray px-3
              hover:text-custom-tomato ${activeNav === 1 ? "text-custom-tomato" : "text-black"
                   }`}
@@ -125,7 +128,7 @@ const Navbar = () => {
                 <Link to="/">Home </Link>
               </li>
               <li
-                onClick={() => setActiveNav(2)}
+                onClick={() => { setIsNav(false); return setActiveNav(2) }}
                 className={`text-lg border-custom-gray px-3
              hover:text-custom-tomato ${activeNav === 2 ? "text-custom-tomato" : "text-black"
                   }`}
@@ -133,7 +136,7 @@ const Navbar = () => {
                 <Link to="/books">Books </Link>
               </li>
               <li
-                onClick={() => setActiveNav(3)}
+                onClick={() => { setIsNav(false); return setActiveNav(3) }}
                 className={`text-lg border-custom-gray px-3
              hover:text-custom-tomato ${activeNav === 3 ? "text-custom-tomato" : "text-black"
                   }`}
@@ -143,7 +146,7 @@ const Navbar = () => {
                 </Link>
               </li>
               <li
-                onClick={() => setActiveNav(4)}
+                onClick={() => { setIsNav(false); return setActiveNav(4) }}
                 className={`text-lg border-custom-gray px-3
              hover:text-custom-tomato ${activeNav === 4 ? "text-custom-tomato" : "text-black"
                   }`}
@@ -153,7 +156,7 @@ const Navbar = () => {
                 </Link>
               </li>
               <li
-                onClick={() => setActiveNav(5)}
+                onClick={() => { setIsNav(false); return setActiveNav(5) }}
                 className={`text-lg border-custom-gray px-3
              hover:text-custom-tomato ${activeNav === 5 ? "text-custom-tomato" : "text-black"
                   }`}
@@ -166,47 +169,20 @@ const Navbar = () => {
 
             <ul className="flex lg:gap-2 gap-1">
               <li
-                onClick={() => setActiveNav(6)}
+                onClick={() => { setIsNav(false); return setActiveNav(6) }}
                 className={`text-lg border-custom-gray px-3
              hover:text-custom-tomato ${activeNav === 6 ? "text-custom-tomato" : "text-black"
                   }`}
 
               >
-                Login
+
+                <Link to="/login">Login </Link>
               </li>
             </ul>
           </div>
         </div>
       </div>
 
-
-
-
-      <section>
-        {showForm && (
-
-          <Popup>
-
-            <div className="flex justify-between w-full  flex-col ">
-              <div className="flex py-2 items-center justify-between font-bolder ">
-                <h1 className={`text-[#0095DA] text-[19px] p-2 capitalize ${isLogin ? "text-custom-tomato" : "text-custom-purple"}`}>
-                  Start today
-                </h1>
-                <button
-                  className="text-[#FF0000] w-4 h-4 items-center flex justify-center p-4 rounded-full outline-none bg-custom-teal "
-                  onClick={() => setShowForm((prevIsLogin) => !prevIsLogin)}
-
-                >
-                  X
-                </button>
-              </div>
-             <NewUser/>
-            </div>
-
-
-          </Popup>
-        )}
-      </section>
     </div>
   );
 };

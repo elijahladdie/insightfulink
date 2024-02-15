@@ -53,9 +53,13 @@ const Login: React.FC = () => {
 
             // Log received data
             console.log(data, "Received data");
-
+            if (response) {
+                toast.success(data.message);
+                setTimeout(() => {
+                    window.location.href = "/dashboard"
+                }, 1000)
+            }
             // Display success message
-            toast.success(data.message);
 
             // Store data in localStorage
             localStorage.setItem("access_info", JSON.stringify(data));

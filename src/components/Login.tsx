@@ -33,7 +33,11 @@ const Login: React.FC = () => {
     //**register */
     const handleSubmit = async () => {
         const { data } = await axios.post(`http://localhost:5000/user/register`, formData)
-        toast.success(data.message)
+        if (data.message) {
+            toast.success(data.message);
+        } else if (data.error) {
+                toast.error(data.message);
+            }
     };
     const handleLogin = async () => {
         const { username, password } = formData;
@@ -53,9 +57,13 @@ const Login: React.FC = () => {
 
             // Log received data
             console.log(data, "Received data");
-
+            if (response) {
+                toast.success(data.message);
+                setTimeout(() => {
+                    window.location.href = "/dashboard"
+                }, 1000)
+            }
             // Display success message
-            toast.success(data.message);
 
             // Store data in localStorage
             localStorage.setItem("access_info", JSON.stringify(data));
@@ -63,7 +71,7 @@ const Login: React.FC = () => {
             // Handle errors
             console.error("Error occurred:", error);
 
-            toast.error("Invalid username or password. Please try again.");
+            toast.error("Incorrect username or password");
 
         }
 
@@ -73,7 +81,7 @@ const Login: React.FC = () => {
     return (
         <div className="h-[90vh] flex   items-center justify-center flex-col">
             <h1 className="text-custom-tomato text-[19px] p-2 capitalize py-3">
-                <ToastContainer position="top-center" />
+                <ToastContainer position="top-center" className="w-40" />
                 Welcome {isLogin ? "back Login" : "sign up"}
             </h1>
             <div

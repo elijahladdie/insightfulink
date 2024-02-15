@@ -14,6 +14,7 @@ import DetailPage from "./components/DetailPage";
 import Login from "./components/Login";
 import UserDetail from "./components/Userdetails";
 import 'react-toastify/dist/ReactToastify.css';
+import BookDetailPage from "./components/BookDetailPage";
 const App = () => {
   return (
     <BrowserRouter>
@@ -34,7 +35,6 @@ const App = () => {
 };
 
 const Auth = () => {
-  const isLoggedin = true; // Get login state from context or local storage or wherever
   const access_info = localStorage.getItem("access_info");
 
   if (access_info) {
@@ -42,9 +42,8 @@ const Auth = () => {
     const accessInfoObj = JSON.parse(access_info);
 
     // Destructure properties from the parsed object
-    const { username, user_fullnames, access_level } = accessInfoObj.data;
+    const {  access_level } = accessInfoObj.data;
 
-    console.log(username, user_fullnames, access_level);
 
     // Now you can use these variables as needed
 
@@ -52,8 +51,8 @@ const Auth = () => {
       return (
         <Routes>
           <Route index element={<AdminDashboard />} />
-          <Route path="new-book" element={<NewBook />} />
-          <Route path="books/view/:book_id" element={<DetailPage />} />
+          <Route path="new-book" element={<NewBook action="new" />} />
+          <Route path="books/view/:book_id" element={<BookDetailPage />} />
           <Route path="user/view/:user_id" element={<UserDetail />} />
           <Route path="*" element={<NOTFOUND />} />
         </Routes>
@@ -62,7 +61,7 @@ const Auth = () => {
       return (
         <Routes>
           <Route index element={<Dashboard />} />
-          <Route path="books/view/:book_id" element={<DetailPage />} />
+          <Route path="books/view/:book_id" element={<BookDetailPage />} />
           <Route path="*" element={<NOTFOUND />} />
         </Routes>
       );

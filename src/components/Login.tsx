@@ -32,12 +32,18 @@ const Login: React.FC = () => {
 
     //**register */
     const handleSubmit = async () => {
-        const { data } = await axios.post(`http://localhost:5000/user/register`, formData)
-        if (data.message) {
-            toast.success(data.message);
-        } else if (data.error) {
-                toast.error(data.message);
+        try{
+
+            const { data } = await axios.post(`http://localhost:5000/user/register`, formData)
+            if (data.message) {
+                toast.success(data.message);
+            } else if (data.error) {
+                toast.error(data.error);
             }
+        }catch(err){
+
+            console.log(err)
+        }
     };
     const handleLogin = async () => {
         const { username, password } = formData;
@@ -55,8 +61,6 @@ const Login: React.FC = () => {
 
             const { data } = response;
 
-            // Log received data
-            console.log(data, "Received data");
             if (response) {
                 toast.success(data.message);
                 setTimeout(() => {

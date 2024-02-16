@@ -8,7 +8,7 @@ const AdminFooter = () => {
     const book_id = params.book_id;
     console.log(book_id)
     return (
-        <footer className='w-screen p-4 text-center bg-custom-tomato uppercase'>Insightulink {year} &copy; copyright </footer>
+        <footer className='w-screen p-4 text-center bg-custom-tomato uppercase relative z-5'>Insightulink {year} &copy; copyright </footer>
     )
 }
 

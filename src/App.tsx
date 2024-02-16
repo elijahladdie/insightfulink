@@ -42,7 +42,7 @@ const Auth = () => {
     const accessInfoObj = JSON.parse(access_info);
 
     // Destructure properties from the parsed object
-    const { username, user_fullnames, access_level } = accessInfoObj.data;
+    const {  access_level } = accessInfoObj.data;
 
 
     // Now you can use these variables as needed
@@ -51,7 +51,7 @@ const Auth = () => {
       return (
         <Routes>
           <Route index element={<AdminDashboard />} />
-          <Route path="new-book" element={<NewBook />} />
+          <Route path="new-book" element={<NewBook action="new" />} />
           <Route path="books/view/:book_id" element={<BookDetailPage />} />
           <Route path="user/view/:user_id" element={<UserDetail />} />
           <Route path="*" element={<NOTFOUND />} />

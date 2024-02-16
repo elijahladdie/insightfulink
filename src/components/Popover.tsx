@@ -45,7 +45,7 @@ const PredefinedPopover: React.FC<PredefinedPopoverProps> = ({
   };
 
   return (
-    <div className="relative">
+    <div className="relative cursor-pointer">
       <div className="inline-block">
         <div className="popover-trigger" onClick={handlePopoverToggle}>
           {trigger}

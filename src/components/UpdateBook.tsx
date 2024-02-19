@@ -7,9 +7,9 @@ import { toast } from "react-toastify";
 interface FormData {
   book_title: string;
   book_subtitle: string;
-  book_coverImage: File | null;
+  book_coverImage: File | string ;
   book_author: string;
-  book_url: File | null;
+  book_url: File | string;
   uploaded_by: string;
 }
 interface Book {
@@ -17,32 +17,31 @@ interface Book {
   book_title: string;
   book_subtitle: string;
   uploaded_by: string;
-  book_coverImage: string;
+  book_coverImage: File | string;
   book_author: string;
-  book_url: string;
+  book_url: File | string;
 }
-const NewBook: React.FC<{ action: string, bookId?: string }> = ({ action, bookId }) => {
+const UpdateBook: React.FC<{ bookId?: string }> = ({ bookId }) => {
   const [formData, setFormData] = useState<FormData>({
     book_title: "",
     book_subtitle: "",
-    book_coverImage: null,
+    book_coverImage: "",
     book_author: "",
-    book_url: null,
+    book_url: "",
     uploaded_by: ""
 
   });
   const [book, setBook] = useState<Book>({
-    _id:"",
-    book_title:"",
-    book_subtitle:"",
-    uploaded_by:"",
-    book_coverImage:"",
-    book_author:"",
-    book_url:""
-  })
+    _id: "",
+    book_title: "",
+    book_subtitle: "",
+    uploaded_by: "",
+    book_coverImage: "",
+    book_author: "",
+    book_url: ""
+  });
+
   interface AccessInfo {
-    username?: string;
-    user_fullnames?: string;
     data: { user_fullnames: string, access_level: number; };
   }
   const [user, setUser] = useState<AccessInfo | null>(null);
@@ -72,25 +71,25 @@ const NewBook: React.FC<{ action: string, bookId?: string }> = ({ action, bookId
   useEffect(() => {
     const fetchBookData = async () => {
       try {
-        const { data } = await axios.get<Book>(`http://localhost:5000/books/${bookId}`);
-        const { book_title, book_subtitle, uploaded_by, book_coverImage, book_author, book_url } = data;
+        const { data } = await axios.get(`http://localhost:5000/books/${bookId}`);
+        const { book_title, book_subtitle, uploaded_by, book_coverImage, book_author, book_url } = data?.bookObj;
         setFormData({
           book_title,
           book_subtitle,
           uploaded_by,
-          book_coverImage: null, // Assuming book_coverImage and book_url are not files but URLs
+          book_coverImage, // Assuming book_coverImage and book_url are not files but URLs
           book_author,
-          book_url: null,
+          book_url,
         });
+        setBook(data)
       } catch (error) {
         toast.error("Failed to fetch book data");
       }
     };
 
-    if (action === "update") {
-      fetchBookData();
-    }
-  }, [action, bookId]);
+    fetchBookData();
+
+  }, [bookId]);
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     const formDataToSend = new FormData();
@@ -98,11 +97,9 @@ const NewBook: React.FC<{ action: string, bookId?: string }> = ({ action, bookId
       formDataToSend.append(key, value instanceof File ? value : value.toString());
     });
     try {
-      let url = 'http://localhost:5000/books/create';
-      if (action === 'update' && bookId) {
-        url = `http://localhost:5000/books/update/${bookId}`;
-      }
-      const { data } = await axios[action === 'update' ? 'put' : 'post'](url, formDataToSend);
+      let url = `http://localhost:5000/books/update/${bookId}`;
+
+      const { data } = await axios.put(url, formDataToSend);
       if (data.message) {
         toast.success(data.message);
       } else if (data.error) {
@@ -110,12 +107,12 @@ const NewBook: React.FC<{ action: string, bookId?: string }> = ({ action, bookId
       }
     } catch (error: any) {
       const errorMessage = error.response ? error.response.data.message : 'Unknown error occurred';
-      toast.error(`Failed to ${action === 'update' ? 'update' : 'create'} book: ${errorMessage}`);
+      toast.error(`Failed to update book: ${errorMessage}`);
     }
   };
   console.log(formData)
   return (
-    <form className=" rounded-md text-sm space-y-4 p-3" onSubmit={handleSubmit}>
+    <form className=" rounded-md text-sm space-y-4 p-3">
       <div className="flex w-full gap-4">
         <div className="w-full ">
           <label>Book Title</label>
@@ -125,8 +122,7 @@ const NewBook: React.FC<{ action: string, bookId?: string }> = ({ action, bookId
             required
             placeholder="E.g: Bird Sing"
             name="book_title"
-            defaultValue="fff"
-            value={formData?.book_title}
+            value={formData.book_subtitle}
             onChange={handleInputChange}
             className="block w-full outline-none rounded-md px-4 py-2 text-gray-900 ring-1 ring-inset ring-gray-200 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-xs sm:leading-6"
           />
@@ -154,9 +150,11 @@ const NewBook: React.FC<{ action: string, bookId?: string }> = ({ action, bookId
               type="file"
               required
               name="book_coverImage"
+              // value={formData?.book_coverImage}
               onChange={handleFileInputChange}
               className="block w-full outline-none rounded-md border-0 px-4 py-2 text-gray-900 ring-1 ring-inset ring-gray-200 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-xs sm:leading-6"
             />
+            {/* <img src={formData?.book_coverImage} alt=""/> */}
           </div>
 
           <div className="w-full">
@@ -166,6 +164,7 @@ const NewBook: React.FC<{ action: string, bookId?: string }> = ({ action, bookId
               type="file"
               required
               name="book_url"
+              // value={formData?.book_url}
               onChange={handleFileInputChange}
               className="block w-full outline-none rounded-md border-0 px-4 py-2 text-gray-900 ring-1 ring-inset ring-gray-200 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-xs sm:leading-6"
             />
@@ -189,14 +188,14 @@ const NewBook: React.FC<{ action: string, bookId?: string }> = ({ action, bookId
       <div className="flex justify-between flex-end">
         <button
           type="submit"
-          //   onClick={handleSubmit}
+          onClick={handleSubmit}
           className="bg-custom-tomato text-white px-2 mt-4 rounded-md py-2 w-full"
         >
-          {action === "new" ? "Register" : "Update"}
+          Update
         </button>
       </div>
     </form>
   );
 };
 
-export default NewBook;
+export default UpdateBook;

@@ -33,9 +33,9 @@ const Navbar = () => {
   }
   return (
     <div className="w-screen  bg-white overflow-hidden z-50">
-      <div className=" hidden md:flex lg:flex justify-between p-3 gap-8  w-full">
+      <div className=" hidden md:flex lg:flex justify-between p-2 pl-20 gap-8  w-full">
         <img
-          className="w-8 h-8 rounded-full "
+          className="w-14 h-14 rounded-full "
           src={logo}
           alt="insightfulink"
           title="Insightful Ink"

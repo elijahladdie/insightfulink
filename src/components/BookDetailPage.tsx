@@ -1,5 +1,5 @@
 import AdminFooter from './Admin/AdminFooter';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import axios, { AxiosError } from 'axios';
 import { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
@@ -37,38 +37,38 @@ const BookDetailPage = () => {
   };
 
   return (
-    <div className='w-screen h-screen relative flex  items-center flex-col overflow-scroll'
-      style={{
-        backgroundImage: `url(${book?.book_coverImage})`,
-        backgroundPosition: 'center',
-        backgroundSize: 'cover',
-        backgroundRepeat: 'no-repeat',
-        backgroundAttachment: "fixed",
-        objectFit: 'cover',
-      }}>
-      <div className='w-full h-full absolute bg-black opacity-90 top-0 left-0 z-0'/>
-        <div className="container relative flex text-custom-white gap-3 p-2 justify-center items-center z-2 h-full sm:px-4 flex-wrap lg:flex-nowrap md:flex-nowrap ">
-          <div className="image-container  h-[80%]">
-            <img src={book?.book_coverImage} alt="" className="w-full h-full object-fit rounded-lg" />
-          </div>
-          <div className="content flex flex-col justify-center items-start gap-5 lg:w-2/4 md:w-2/4 p-2 lg:p-0">
-            <h1 className="lg:text-4xl font-bold tracking-wider text-3xl">
-              {book?.book_title}
-            </h1>
-            <p className="text-base">
-              "{book?.book_title}" ,{book?.book_subtitle}
-            </p>
-            <button
-              onClick={handleDownload}
-              className="bg-custom-tomato rounded-lg text-white px-4 py-2 w-fit whitespace-nowrap flex items-center gap-2"
-            >
-              <FaEye />
-              <p>Read</p>
-            </button>
-          </div>
-
+    <div className='w-screen h-screen relative flex  items-center flex-col overflow-scroll bg-custom-light-tomato'
+    >
+      <Link
+        to={"/dashboard"}
+        className="absolute left-2 top-3  bg-custom-tomato rounded-lg text-white px-4 py-2 w-fit whitespace-nowrap flex items-center gap-2"
+      >
+       
+        <p>Back</p>
+      </Link>
+      {/* <div className='w-full h-full absolute bg-black opacity-90 top-0 left-0 z-0'/> */}
+      <div className="container relative flex text-black gap-3 p-2 justify-center items-center z-2 h-full sm:px-4 flex-wrap lg:flex-nowrap md:flex-nowrap ">
+        <div className="image-container  h-[80%]">
+          <img src={book?.book_coverImage} alt="" className="w-full h-full object-fit rounded-lg" />
         </div>
-        <AdminFooter />
+        <div className="content flex flex-col justify-center items-start gap-5 lg:w-2/4 md:w-2/4 p-2 lg:p-0">
+          <h1 className="lg:text-4xl font-bold tracking-wider text-3xl">
+            {book?.book_title}
+          </h1>
+          <p className="text-base">
+            "{book?.book_title}" ,{book?.book_subtitle}
+          </p>
+          <button
+            onClick={handleDownload}
+            className="bg-custom-tomato rounded-lg text-white px-4 py-2 w-fit whitespace-nowrap flex items-center gap-2"
+          >
+            <FaEye />
+            <p>Read</p>
+          </button>
+        </div>
+
+      </div>
+      <AdminFooter />
     </div>
   )
 }

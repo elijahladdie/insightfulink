@@ -6,6 +6,7 @@ import PredefinedPopover from "../Popover";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import { BsEye } from "react-icons/bs";
+import UpdateBook from "../UpdateBook";
 interface Book {
   _id: string;
   book_title: string;
@@ -37,11 +38,11 @@ const Books = () => {
     const { data } = await axios
       .delete(`http://localhost:5000/books/delete/${bkTodelete}`).then(async () => await axios.get("http://localhost:5000/books"));
     if (data.message) {
+      setBooks(data.books);
       return toast.success(data.message)
     }
     return toast.error(data.error);
   };
-
   return (
     <header>
       <div className=" flex justify-center flex-col ">
@@ -72,7 +73,6 @@ const Books = () => {
               </th>
             </tr>
           </thead>
-
           <tbody>
             {books?.map((book) => (
               <tr className="" key={book._id}>
@@ -147,7 +147,7 @@ const Books = () => {
               X
             </button>
           </div>
-          <NewBook action="update" bookId={bookId} />
+          <UpdateBook bookId={bookId} />
         </Popup>
       )}
     </header>

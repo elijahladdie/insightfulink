@@ -37,7 +37,7 @@ const RegisterAdmin: React.FC = () => {
     e.preventDefault();
     try {
 
-      const { data } = await axios.post(`http://localhost:5000/user/register`, formData)
+      const { data } = await axios.post(`https://insight-backend-tfbb.onrender.com/user/register`, formData)
       if (data.message) {
         toast.success(data.message);
       } else if (data.error) {

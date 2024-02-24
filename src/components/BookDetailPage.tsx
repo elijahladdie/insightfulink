@@ -10,7 +10,7 @@ const BookDetailPage = () => {
   const { book_id } = params;
   useEffect(() => {
     const handleSubmit = async () => {
-      const { data } = await axios.get(`http://localhost:5000/books/${book_id}`)
+      const { data } = await axios.get(`https://insight-backend-tfbb.onrender.com/books/${book_id}`)
       if (data) {
         setBook(data.bookObj)
       } else if (data.error) {
@@ -27,7 +27,7 @@ const BookDetailPage = () => {
         return;
       }
 
-      const downloadUrl = `http://localhost:5000/${book.book_url}`;
+      const downloadUrl = `https://insight-backend-tfbb.onrender.com/${book.book_url}`;
       window.open(downloadUrl, '_blank');
 
     } catch (error) {

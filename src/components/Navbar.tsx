@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from "react";
 import logo from "../assests/insightfulink.png";
 import { Link } from "react-router-dom";
-import { BsEye, BsLine, BsXLg } from "react-icons/bs";
-import { FaChartLine, FaLine } from "react-icons/fa";
-import Popup from "./PopUp";
-import NewUser from "./Form";
+import {  BsXLg } from "react-icons/bs";
+
 interface AccessInfo {
 
   data: { user_fullnames: string, username?: string, access_level: number; };

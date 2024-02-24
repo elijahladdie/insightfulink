@@ -1,20 +1,34 @@
 import React, { useEffect, useState } from 'react';
 import { SiBookstack } from "react-icons/si";
-import { FaBell, FaHome, FaSignOutAlt } from "react-icons/fa";
+import { FaHome, } from "react-icons/fa";
 import { FaUsers } from "react-icons/fa6";
-import { BarChart, Bar, Rectangle, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, LineChart, Line } from 'recharts';
+import {  XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, LineChart, Line } from 'recharts';
 import Books from './Books';
 import Users from './Users';
-import logo from "../../assests/insightfulink.png";
 import { BsBook } from 'react-icons/bs';
 import axios from 'axios';
 import formatMoney from '../../utils/formatMoney';
+import { toast } from 'react-toastify';
 
 
 const AdminDashboard = () => {
   const [books, setBooks] = useState(false)
   const [nav, setNav] = useState(false)
-const [userData,setUserData] = useState<any>()
+const [userData,setUserData] = useState<any>();
+const [total, setTotal] = useState<any>();
+
+useEffect(() => {
+  const getBooks = async () => {
+    const { data } = await axios.get("https://insight-backend-tfbb.onrender.com/books/total");
+    setTotal(data.totalBooks);
+
+    if (!data.message) {
+
+      toast.error(data.error);
+    }
+  };
+  getBooks();
+}, []);
   const data = [
     {
       name: '2020 - 2021',
@@ -44,7 +58,7 @@ const [userData,setUserData] = useState<any>()
 
   useEffect(()=>{
     const fetchData = async() =>{
-      const {data} = await axios.get("http://localhost:5000/user/total");
+      const {data} = await axios.get("https://insight-backend-tfbb.onrender.com/user/total");
       setUserData({totalUsers:data.totalUsers, totalBalance:data.totalBalance})
     }
     fetchData();
@@ -130,7 +144,7 @@ const [userData,setUserData] = useState<any>()
               <div>
                 <h5 className="mb-2 text-2xl font-semibold tracking-tight text-custom-tomato ">Books </h5>
               </div>
-              <p className="mb-2 font-normal text-custom-tomato ">5000</p>
+              <p className="mb-2 font-normal text-custom-tomato ">{total}</p>
 
             </div>
             <div className="w-full p-2 px-6 bg-white flex flex-col justify-between  shadow hover:shadow-md rounded-lg shadow bg-custom-light-tomato ">

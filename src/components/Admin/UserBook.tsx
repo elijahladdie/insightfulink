@@ -41,7 +41,7 @@ const Books: React.FC<bookProp> = ({ status }) => {
   });
   useEffect(() => {
     const getBooks = async () => {
-      const { data } = await axios.get("http://localhost:5000/books");
+      const { data } = await axios.get("https://insight-backend-tfbb.onrender.com/books");
       setBooks(data.books);
       if (data.message) {
         return data;
@@ -61,7 +61,7 @@ const Books: React.FC<bookProp> = ({ status }) => {
 
 
   const handleSubscribe = async () => {
-    const { data } = await axios.put(`http://localhost:5000/user/subscribe`, formData)
+    const { data } = await axios.put(`https://insight-backend-tfbb.onrender.com/user/subscribe`, formData)
     if (data.message) {
       toast.success(data.message);
     } else if (data.error) {

@@ -1,8 +1,6 @@
 import {
   FaCopyright,
   FaFacebookF,
-  FaTwitter,
-  FaTwitterSquare,
 } from "react-icons/fa";
 import logo from "../assests/insightfulink.png";
 import { BsLinkedin, BsTwitterX, BsYoutube } from "react-icons/bs";

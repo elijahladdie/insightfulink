@@ -99,7 +99,7 @@ const UpdateBook: React.FC<{ bookId?: string }> = ({ bookId }) => {
     try {
       let url = `https://insight-backend-tfbb.onrender.com/books/update/${bookId}`;
 
-      const { data } = await axios.put(url, formDataToSend);
+      const { data } = await axios.put(url, {updatedData: formData});
       if (data.message) {
         toast.success(data.message);
       } else if (data.error) {
@@ -122,7 +122,7 @@ const UpdateBook: React.FC<{ bookId?: string }> = ({ bookId }) => {
             required
             placeholder="E.g: Bird Sing"
             name="book_title"
-            value={formData.book_subtitle}
+            value={formData?.book_title}
             onChange={handleInputChange}
             className="block w-full outline-none rounded-md px-4 py-2 text-gray-900 ring-1 ring-inset ring-gray-200 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-xs sm:leading-6"
           />
@@ -178,7 +178,7 @@ const UpdateBook: React.FC<{ bookId?: string }> = ({ bookId }) => {
             required
             placeholder="hint: Add meaning subtitle of this book"
             name="book_subtitle"
-            value={formData.book_subtitle}
+            value={formData?.book_subtitle}
             onChange={handleInputChange}
             className="block w-full outline-none rounded-md border-0 px-4 py-2 text-gray-900 ring-1 ring-inset ring-gray-200 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-xs sm:leading-6"
           />

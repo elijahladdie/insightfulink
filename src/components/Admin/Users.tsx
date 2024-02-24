@@ -41,7 +41,7 @@ const Users = () => {
   console.log(userId)
   useEffect(() => {
     const getUsers = async () => {
-      const { data } = await axios.get("http://localhost:5000/user");
+      const { data } = await axios.get("https://insight-backend-tfbb.onrender.com/user");
       setUsers(data.user);
       if (data.message) {
         return data;
@@ -57,7 +57,7 @@ const Users = () => {
     // })
     try {
 
-      const { data } = await axios.put(`http://localhost:5000/user/subscribe/approve `,{username:userId})
+      const { data } = await axios.put(`https://insight-backend-tfbb.onrender.com/user/subscribe/approve `,{username:userId})
       if (data.message) {
         toast.success(data.message);
       } 

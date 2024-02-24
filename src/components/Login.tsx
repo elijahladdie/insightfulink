@@ -34,7 +34,7 @@ const Login: React.FC = () => {
     const handleSubmit = async () => {
         try{
 
-            const { data } = await axios.post(`http://localhost:5000/user/register`, formData)
+            const { data } = await axios.post(`https://insight-backend-tfbb.onrender.com/user/register`, formData)
             if (data.message) {
                 toast.success(data.message);
             } else if (data.error) {
@@ -54,7 +54,7 @@ const Login: React.FC = () => {
         }
 
         try {
-            const response = await axios.post(`http://localhost:5000/user/login`, {
+            const response = await axios.post(`https://insight-backend-tfbb.onrender.com/user/login`, {
                 username,
                 password
             });

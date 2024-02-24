@@ -21,7 +21,7 @@ const AdminDashboard = () => {
   const [total, setTotal] = useState<any>();
   useEffect(() => {
     const getBooks = async () => {
-      const { data } = await axios.get("http://localhost:5000/books/total");
+      const { data } = await axios.get("https://insight-backend-tfbb.onrender.com/books/total");
       setTotal(data.totalBooks);
 
       if (!data.message) {
@@ -49,7 +49,7 @@ const AdminDashboard = () => {
     // })
     try {
 
-      const { data } = await axios.put(`http://localhost:5000/user/subscribe`, formData)
+      const { data } = await axios.put(`https://insight-backend-tfbb.onrender.com/user/subscribe`, formData)
       if (data.message) {
         toast.success(data.message);
       } else {

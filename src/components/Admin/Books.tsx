@@ -24,7 +24,7 @@ const Books = () => {
   const [bookId, setBookId] = useState<string | undefined>(undefined);
   useEffect(() => {
     const getBooks = async () => {
-      const { data } = await axios.get("http://localhost:5000/books");
+      const { data } = await axios.get("https://insight-backend-tfbb.onrender.com/books");
       setBooks(data.books);
       if (data.message) {
         return data;
@@ -36,7 +36,7 @@ const Books = () => {
   }, []);
   const bookToDelete = async (bkTodelete: any) => {
     const { data } = await axios
-      .delete(`http://localhost:5000/books/delete/${bkTodelete}`).then(async () => await axios.get("http://localhost:5000/books"));
+      .delete(`https://insight-backend-tfbb.onrender.com/books/delete/${bkTodelete}`).then(async () => await axios.get("https://insight-backend-tfbb.onrender.com/books"));
     if (data.message) {
       setBooks(data.books);
       return toast.success(data.message)

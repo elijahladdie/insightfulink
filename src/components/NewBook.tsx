@@ -72,7 +72,7 @@ const NewBook: React.FC<{ action: string, bookId?: string }> = ({ action, bookId
   useEffect(() => {
     const fetchBookData = async () => {
       try {
-        const { data } = await axios.get<Book>(`http://localhost:5000/books/${bookId}`);
+        const { data } = await axios.get<Book>(`https://insight-backend-tfbb.onrender.com/books/${bookId}`);
         const { book_title, book_subtitle, uploaded_by, book_coverImage, book_author, book_url } = data;
         setFormData({
           book_title,
@@ -98,9 +98,9 @@ const NewBook: React.FC<{ action: string, bookId?: string }> = ({ action, bookId
       formDataToSend.append(key, value instanceof File ? value : value.toString());
     });
     try {
-      let url = 'http://localhost:5000/books/create';
+      let url = 'https://insight-backend-tfbb.onrender.com/books/create';
       if (action === 'update' && bookId) {
-        url = `http://localhost:5000/books/update/${bookId}`;
+        url = `https://insight-backend-tfbb.onrender.com/books/update/${bookId}`;
       }
       const { data } = await axios[action === 'update' ? 'put' : 'post'](url, formDataToSend);
       if (data.message) {

@@ -44,7 +44,7 @@ const [userData,setUserData] = useState<any>()
 
   useEffect(()=>{
     const fetchData = async() =>{
-      const {data} = await axios.get("http://localhost:5000/user/total");
+      const {data} = await axios.get("https://insight-backend-tfbb.onrender.com/user/total");
       setUserData({totalUsers:data.totalUsers, totalBalance:data.totalBalance})
     }
     fetchData();

@@ -92,13 +92,9 @@ const UpdateBook: React.FC<{ bookId?: string }> = ({ bookId }) => {
   }, [bookId]);
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    const formDataToSend = new FormData();
-    Object.entries(formData).forEach(([key, value]) => {
-      formDataToSend.append(key, value instanceof File ? value : value.toString());
-    });
-    try {
+   try {
       let url = `https://insight-backend-tfbb.onrender.com/books/update/${bookId}`;
-
+      
       const { data } = await axios.put(url, {updatedData: formData});
       if (data.message) {
         toast.success(data.message);
@@ -110,7 +106,6 @@ const UpdateBook: React.FC<{ bookId?: string }> = ({ bookId }) => {
       toast.error(`Failed to update book: ${errorMessage}`);
     }
   };
-  console.log(formData)
   return (
     <form className=" rounded-md text-sm space-y-4 p-3">
       <div className="flex w-full gap-4">

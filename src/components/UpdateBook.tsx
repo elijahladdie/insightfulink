@@ -99,7 +99,7 @@ const UpdateBook: React.FC<{ bookId?: string }> = ({ bookId }) => {
     try {
       let url = `https://insight-backend-tfbb.onrender.com/books/update/${bookId}`;
 
-      const { data } = await axios.put(url, {updatedData: formData});
+      const { data } = await axios.put(url, {updatedData: formDataToSend});
       if (data.message) {
         toast.success(data.message);
       } else if (data.error) {
